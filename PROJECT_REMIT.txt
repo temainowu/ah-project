@@ -1,0 +1,13 @@
+
+- Main Area:
+    - Software Design and Development (code for tictactoe + flask)
+
+- Two AH Concepts:
+    - Array of Objects
+    - Insertion Sort
+
+- Integration:
+    - Web Design and Development (website)
+
+- Validiation
+    - Program should validate all inputs. (note, make sure there are inputs to validate)
