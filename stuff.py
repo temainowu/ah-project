@@ -1,15 +1,29 @@
 import random
 from typing import Optional
 
+USER_FILE = "UserData.txt"
 
 class User:
-    def __init__(self, name: str, score: int):
+    def __init__(self, name: str, score: int, sec_question: str, sec_answer_hash: str, password_hash: str) -> None:
         self.name = name
         self.score = score
+        self.sec_question = sec_question
+        self.sec_answer_hash = sec_answer_hash
+        self.password_hash = password_hash
     # end def
 
     def show(self) -> None:
         print(f'{self.name} has won {self.score} games')
+    # end def
+
+    @classmethod
+    def from_string(cls, string: str) -> 'User':
+        name, score, sec_question, sec_answer_hash, password_hash = string.split(',')
+        return cls(name, int(score), sec_question, sec_answer_hash, password_hash)
+    # end def
+
+    def to_string(self) -> str:
+        return f'{self.name},{self.score},{self.sec_question},{self.sec_answer_hash},{self.password_hash},'
     # end def
 # end class
 
@@ -32,12 +46,6 @@ def sort(array: "list[User]") -> None:
     # end for
 # end def
 
-
-def parse_line(line: "list[str]") -> "User":
-    name, score = line
-    return User(name, int(score))
-
-
 def read_score() -> None:
     scores = []
     file = open('Scores.txt', 'r')
@@ -45,7 +53,7 @@ def read_score() -> None:
     file.close()
 
     for line in data:
-        user = parse_line(line.split(","))
+        user = User.from_string(line)
         scores.append(user)
     # end for
 
@@ -91,19 +99,19 @@ def add_score(name: str) -> None:
     file.close()
 
     for line in data:
-        user = line.split(",")
-        scores.append(User(user[0], int(user[1])))
+        user = User.from_string(line)
+        scores.append(user)
     # end for
 
     location = search(scores, name)
 
     if location is None:
-        scores.append(User(name, 1))
+        assert False
     else:
         scores[location].score += 1
     # end if
 
-    file = open('Scores.txt', 'w')
+    file = open(USER_FILE, 'w')
     file.truncate()
     for i in scores:
         file.write(f'{i.name},{i.score},\n')
