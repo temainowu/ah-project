@@ -113,21 +113,23 @@ def add_score(name: str) -> None:
 
 
 def game_over(move_count: int, name: str) -> bool:
-    win_combos = [[1, 1, 1, 0, 0, 0, 0, 0, 0],
-                 [0, 0, 0, 1, 1, 1, 0, 0, 0],
-                 [0, 0, 0, 0, 0, 0, 1, 1, 1],
-                 [1, 0, 0, 1, 0, 0, 1, 0, 0],
-                 [0, 1, 0, 0, 1, 0, 0, 1, 0],
-                 [0, 0, 1, 0, 0, 1, 0, 0, 1],
-                 [1, 0, 0, 0, 1, 0, 0, 0, 1],
-                 [0, 0, 1, 0, 1, 0, 1, 0, 0]]
+    win_combos = [
+        [1, 1, 1, 0, 0, 0, 0, 0, 0],
+        [0, 0, 0, 1, 1, 1, 0, 0, 0],
+        [0, 0, 0, 0, 0, 0, 1, 1, 1],
+        [1, 0, 0, 1, 0, 0, 1, 0, 0],
+        [0, 1, 0, 0, 1, 0, 0, 1, 0],
+        [0, 0, 1, 0, 0, 1, 0, 0, 1],
+        [1, 0, 0, 0, 1, 0, 0, 0, 1],
+        [0, 0, 1, 0, 1, 0, 1, 0, 0]
+    ]
     for j in range(len(win_combos)):
         if [x & y for x, y in zip(win_combos[j], loclist[0])] in win_combos:
-            print('You won in', (move_count+1)//2, 'moves')
+            print(f'You won in {(move_count+1)//2} moves')
             add_score(name)
             return True
         elif [x & y for x, y in zip(win_combos[j], loclist[1])] in win_combos:
-            print('AI won in', (move_count)//2, 'moves')
+            print(f'AI won in {(move_count)//2} moves')
             return True
         # end if
     # end for
