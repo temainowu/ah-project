@@ -1,0 +1,17 @@
+nav {
+	margin: auto;
+	border: 1px solid red;
+}
+nav ul {
+	list-style-type: none;
+}
+
+nav ul li {
+	padding: 25px 5%;
+	display: inline;
+}
+main table tr td {
+	width: 100px;
+	height: 100px;
+	font-size: 100px;
+}

@@ -1,0 +1,33 @@
+<hmtl>
+
+    <head>
+        <title>Sign Up</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    </head>
+
+    <body>
+        <nav>
+		<ul>
+			<li><a href=/     >Home   </a></li>
+			<li><a href=login >Login  </a></li>
+			<li><a href=signup>Sign Up</a></li>
+		</ul>
+		</nav>
+		<form method="post">
+			<h2>Sign Up</h2>
+			<lable for="name">Username:         </lable>
+			<input type="text" id="name" name="username" required>
+			<br>
+			<lable for="pass">Password:         </lable>
+			<input type="password" id="pass" name="password" minlength="8" required>
+			<br>
+			<lable for="ques">Security Question:</lable>
+			<input type="text" id="ques" name="question" required>
+			<br>
+			<lable for="ans">Answer:            </lable>
+			<input type="password" id="ans" name="answer" required>
+			<br>
+			<input type="submit" value="Sign Up">
+		</form>   
+    </body>
+</hmtl>
